@@ -1,8 +1,13 @@
+import { Button } from '@mui/material';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import SearchPage from './pages/searchPage/SearchPage';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const URL = require('url').URL;
+
+describe('Test the homepage', () => {
+  it('Renders SearchPage correctly', () => {
+    render(<App />);
+    expect(screen.getByText(/Github User Search/i)).toBeInTheDocument();
+  });
 });

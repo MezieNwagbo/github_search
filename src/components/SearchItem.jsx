@@ -3,14 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Container } from '@mui/system';
 import Button from '@mui/material/Button';
-import {
-  ListItemAvatar,
-  ListItemText,
-  Avatar,
-  Grid,
-  Typography,
-} from '@mui/material';
-import axios from '../axios';
+import { ListItemAvatar, ListItemText, Avatar, Grid } from '@mui/material';
 import { useQuery } from '../context/queryContext';
 
 import './SearchItem.scss';
