@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Container } from '@mui/system';
@@ -10,8 +10,6 @@ import './SearchItem.scss';
 
 const SearchItem = () => {
   const queryData = useQuery();
-  const [repoLength, setRepoLength] = useState();
-  const [orgsLength, setOrgsLength] = useState();
 
   if (queryData.loading) {
     return (

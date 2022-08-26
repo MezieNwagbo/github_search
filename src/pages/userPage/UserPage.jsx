@@ -16,8 +16,6 @@ import { useEffect } from 'react';
 import axios from '../../axios';
 import { useState } from 'react';
 
-import { useQuery } from '../../context/queryContext';
-
 export const UserPage = () => {
   const { user } = useParams();
   const [userDetail, setUserDetail] = useState({});
@@ -28,21 +26,19 @@ export const UserPage = () => {
     axios
       .get(`/users/${user}`)
       .then((response) => setUserDetail(response.data));
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     axios
       .get(`/users/${user}/repos`)
       .then((response) => setRepoDetail(response.data));
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     axios
       .get(`/users/${user}/orgs`)
       .then((response) => setOrgsDetail(response.data));
-  }, []);
-
-  console.log(userDetail);
+  }, [user]);
 
   return (
     <Container>
@@ -107,7 +103,7 @@ export const UserPage = () => {
               margin: 'auto 30px',
             }}
           >
-            {repoDetail.map((item) => {
+            {repoDetail.map((item, index) => {
               return (
                 <Grid
                   item
@@ -124,12 +120,17 @@ export const UserPage = () => {
                     paddingLeft: 1,
                     margin: 2,
                   }}
+                  key={index}
                 >
                   <ListItemText
                     primary={item.name}
                     secondary={
                       <React.Fragment>
-                        <a href={item.html_url} target="_blank">
+                        <a
+                          href={item.html_url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
                           <Button
                             size="small"
                             sx={{
@@ -169,7 +170,7 @@ export const UserPage = () => {
                 margin: 'auto 50px',
               }}
             >
-              {orgsDetail.map((item) => {
+              {orgsDetail.map((item, index) => {
                 return (
                   <Grid
                     item
@@ -183,6 +184,7 @@ export const UserPage = () => {
                       paddingLeft: 1,
                       margin: 2,
                     }}
+                    key={index}
                   >
                     <ListItemText
                       primary={item.login}
